@@ -2,20 +2,11 @@ import mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    comment: {
-      type: String,
-      required: true,
-    },
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
     user: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
@@ -80,4 +71,5 @@ const productSchema = mongoose.Schema(
 );
 
 const Product = mongoose.model("Product", productSchema);
+
 export default Product;

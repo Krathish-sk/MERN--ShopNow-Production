@@ -1,12 +1,12 @@
-import { apiSlice } from "./apiSlice";
 import { PRODUCTS_URL } from "../constants";
+import { apiSlice } from "./apiSlice";
 
-export const productApiSlice = apiSlice.injectEndpoints({
+export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: ({ pageNumber, keyword }) => ({
+      query: ({ keyword, pageNumber }) => ({
         url: PRODUCTS_URL,
-        params: { pageNumber, keyword },
+        params: { keyword, pageNumber },
       }),
       keepUnusedDataFor: 5,
       providesTags: ["Products"],
@@ -34,7 +34,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
     }),
     uploadProductImage: builder.mutation({
       query: (data) => ({
-        url: "/api/upload",
+        url: `/api/upload`,
         method: "POST",
         body: data,
       }),
@@ -55,9 +55,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ["Product"],
     }),
     getTopProducts: builder.query({
-      query: () => ({
-        url: `${PRODUCTS_URL}/top`,
-      }),
+      query: () => `${PRODUCTS_URL}/top`,
       keepUnusedDataFor: 5,
     }),
   }),
@@ -72,4 +70,4 @@ export const {
   useDeleteProductMutation,
   useCreateReviewMutation,
   useGetTopProductsQuery,
-} = productApiSlice;
+} = productsApiSlice;
